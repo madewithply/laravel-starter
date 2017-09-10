@@ -1,0 +1,12 @@
+mixin form_row_input(id, name, type, placeholder, label, errorMessage)
+
+    .form-group(class="errors->has(name) ? 'has-error' : ''")
+        label(for=name)=label
+        input.form-control(id=id, type=type, name=name, placeholder=placeholder, required, autofocus="true")
+
+        // Errors from Foundation
+        span.form-error.abide=errorMessage
+
+        if errors->has(name)
+            // Errors Returned from Server
+            span.form-error.server=errors->first(name)

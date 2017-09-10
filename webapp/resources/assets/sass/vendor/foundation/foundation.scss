@@ -1,0 +1,11 @@
+// Import Foundation Settings
+@import "settings";
+
+// Foundation from NPM
+@import 'node_modules/foundation-sites/scss/foundation';
+
+// Include Everything
+@include foundation-everything(true);
+
+// Include the grid
+@include foundation-grid;

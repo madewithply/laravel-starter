@@ -1,0 +1,95 @@
+# v2 syntax
+version: '2'
+
+# Named volumes
+volumes:
+  # Postgres Data
+  projectx-postgres-data:
+    driver: local
+
+  # MySQL Data
+  projectx-mysql-data:
+    driver: local
+
+  # Redis Data
+  projectx-redis-data:
+    driver: local
+
+services:
+  # Postgres (9.5)
+  postgres:
+    image: ambientum/postgres:9.6
+    container_name: projectx-postgres
+    volumes:
+      - projectx-postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=projectx
+      - POSTGRES_DB=projectx
+      - POSTGRES_USER=projectx
+
+  # MySQL (5.7)
+  mysql:
+    image: ambientum/mysql:5.7
+    container_name: projectx-mysql
+    volumes:
+      - projectx-mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=projectx
+      - MYSQL_DATABASE=projectx
+      - MYSQL_USER=projectx
+      - MYSQL_PASSWORD=projectx
+
+  # Redis
+  cache:
+    image: ambientum/redis:3.2
+    container_name: projectx-redis
+    command: --appendonly yes
+    volumes:
+      - projectx-redis-data:/data
+    ports:
+      - "6379:6379"
+
+  # Selenium Chrome
+  selenium-ch:
+    image: selenium/standalone-chrome
+    container_name: projectx-selenium-chrome
+    ports:
+      - "4444:4444"
+    links:
+      - app:projectx.selenium
+
+  # Selenium Firefox
+  selenium-ff:
+    image: selenium/standalone-firefox
+    container_name: projectx-selenium-firefox
+    links:
+      - app:projectx.selenium
+
+  # PHP (with Caddy)
+  app:
+    image: ambientum/php:7.1-nginx
+    container_name: projectx-app
+    volumes:
+      - .:/var/www/app
+    ports:
+      - "80:8080"
+    environment:
+      - XDEBUG_ENABLED=true
+    links:
+      - postgres
+      - mysql
+      - cache
+  # Laravel Queues
+  queue:
+    image: ambientum/php:7.1
+    container_name: projectx-queue
+    command: php artisan queue:listen
+    volumes:
+      - .:/var/www/app
+    links:
+      - mysql
+      - cache

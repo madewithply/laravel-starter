@@ -1,0 +1,44 @@
+include ../components/csrf_field
+include ../components/flash_error_alert
+include ../components/flash_status_alert
+include ../components/form_row_input
+
+//- layout.pug
+html(lang=app()->getLocale())
+    head
+        //- Global Meta
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        meta(name="csrf-token" content="{{ csrf_token() }}")
+
+        //- Meta Tags
+        block meta
+
+        //- SEO
+        title {{ config('app.name', 'Apollo') }}
+
+        //- Global Styles and Scripts
+        link(href="{{ mix('css/app.css') }}", rel='stylesheet')
+
+    body(class=view_name)
+        #app
+            
+          //- Top Navigation
+          include ./../blocks/topbar
+
+          +flash_error_alert
+          +flash_status_alert
+
+          block content
+              p Content goes here
+
+          block footer
+            footer
+              p.small Copyright Ply Creative 2017.
+
+        //- Global App Script
+        script(src="{{ mix('js/app.js') }}")
+
+        //- Additional Scripts / Styles
+        block scripts

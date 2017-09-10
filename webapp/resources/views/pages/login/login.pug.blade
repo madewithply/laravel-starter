@@ -1,0 +1,36 @@
+extends ../../layouts/app_layout.pug
+
+block content
+    .grid-container
+        .grid-x.align-center
+            .cell.large-8
+                .card.card-register
+                    .card-divider
+                        h2 Login
+
+                    .card-section
+                        form.form-horizontal(method="POST" action=route('login'), data-abide, novalidate)
+                            +csrf_field
+
+                            .alert.callout(data-abide-error, style="display: none;")
+                                p
+                                    i.fi-alert
+                                    | There are some errors in your form
+
+                            +form_row_input("email", "email", "email", "Enter your email address", "Email", "This is a required field")
+                            +form_row_input("password", "password", "password", "Enter your password", "Password", "This is a required field")
+
+                            .card-actions
+                                .grid-x.align-middle.align-justify                
+                                    .cell.shrink
+                                        .grid-x.align-middle
+                                            .cell.shrink
+                                                button.button(type="submit") Login
+
+                                            .cell.shrink
+                                                label
+                                                    input(type="checkbox" name="remember", checked=old('remember'))
+                                                    | Remember Me
+
+                                    .cell.shrink.align-self-right
+                                        a.forgot-password(href=route('password.request')) Forgot Your Password?

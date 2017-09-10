@@ -1,0 +1,8 @@
+span.chip {
+	background-color: $primary-color;
+	color: white;
+	border-radius: $global-radius;
+	font-size: rem-calc(12);
+	padding: 3px 3px;
+	line-height: 1em;
+}

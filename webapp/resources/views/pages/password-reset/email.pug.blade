@@ -1,0 +1,28 @@
+extends ../../layouts/app_layout
+
+block content
+
+    .row.columns
+        h1 Request Password Reset
+
+        .panel-heading
+        .panel-body
+            if session('status')
+                .alert(role="callout")
+                    h4=session('status')
+
+
+        form.form-horizontal(method="POST" action=route('password.email'), data-abide, novalidate)
+            +csrf_field
+
+            .alert.callout(data-abide-error, style="display: none;")
+                p
+                    i.fi-alert
+                    | There are some errors in your form
+
+            +form_row_input("email", "email", "email", "Enter your email address", "Email", "This is a required field")
+
+            .row.form-group
+                .columns
+                    .submit
+                        button.button(type="submit") Send Password Reset

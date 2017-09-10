@@ -1,0 +1,10 @@
+mixin flash_status_alert()
+
+    if session('status')
+        .callout.success(role="callout" data-closable="")
+            .row.columns
+                h5=session('status')
+
+                button.close-button(aria-label="Dismiss alert" type="button" data-close="")
+                    span(aria-hidden="true")
+                        | &times;

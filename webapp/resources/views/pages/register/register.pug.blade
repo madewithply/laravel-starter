@@ -1,0 +1,28 @@
+extends ../../layouts/app_layout.pug
+
+block content
+    .grid-container
+        .grid-x.align-center
+            .cell.large-8
+                .card.card-register
+                    .card-divider
+                        h3 Tell us who you are
+                        p All fields required unless noted
+                    .card-section
+                        form.form-horizontal(action=route('register'), method="POST", data-abide, novalidate)
+                            +csrf_field
+
+                            .alert.callout(data-abide-error, style="display: none;")
+                                p
+                                    i.fi-alert
+                                    | There are some errors in your form
+
+                            +form_row_input("first_name", "first_name", "text", "Enter your first name", "First Name", "This is a required field")
+                            +form_row_input("last_name", "last_name", "text", "Enter your last name", "Last Name", "This is a required field")
+                            +form_row_input("email", "email", "email", "Enter your email address", "Email", "This is a required field")
+                            +form_row_input("password", "password", "password", "Enter your desired password", "Password", "This is a required field")
+                            +form_row_input("password_confirmation", "password_confirmation", "password", "Re-enter your password", "Confirm Password", "This is a required field")   
+
+                            .card-actions
+                                button.button(type="submit") Sign Up
+                

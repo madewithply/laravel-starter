@@ -1,0 +1,85 @@
+nav.main {
+	margin-bottom: 3rem;
+	border-top: 8px solid $primary-color;
+	//box-shadow: 0 20px 60px 0 rgba(0, 0, 0, 0.09);
+	background-color: $white;
+	padding: 0.5rem 0;
+	.top-bar {
+		.logo {
+			padding-right: 2rem;
+			.logo-text {
+				margin-left: 1rem;
+			}
+		}
+		.top-bar-left {
+			ul.menu {
+				a {
+					color: #ABAAA8;
+					text-transform: uppercase;
+					font-weight: bold;
+				}
+				span.has-tip {
+					// Temp for Tooltips
+					border-bottom-width: 0px;
+				}
+			}
+		}
+		.top-bar-right {
+			a {
+				color: #6D6E71;
+				font-weight: bold;
+			}
+			.menu-messages {
+				padding-right: $global-padding;
+				border-right: 1px solid $light-gray;
+				.message-icon {
+					position: relative;
+					img {
+						margin-left: 1rem;
+					}
+					span.chip {
+						position: absolute;
+						top: -10px;
+						right: 0;
+						transform: translate(50%, 0%);
+					}
+				}
+			}
+			.menu-user {
+				position: relative;
+				z-index: 2;
+				min-width: calc(180px + #{$global-padding});
+				padding-left: $global-padding;
+				.user-image {
+					background-color: #E4E4E4;
+					height: 3rem;
+					width: 3rem;
+					margin-left: 1rem;
+					border-radius: 50%;
+					position: relative;
+					span.chip {
+						position: absolute;
+						top: 0;
+						right: 0;
+						transform: translate(50%, 0%);
+					}
+				}
+			}
+			.submenu {
+				border-radius: $global-radius;
+				box-shadow: 0 20px 60px 0 rgba(0, 0, 0, 0.06);
+				padding-top: 4rem;
+				margin-top: -4.3rem;
+				overflow: hidden;
+				min-width: calc(180px + #{$global-padding});
+				margin-right: calc(-#{$global-padding} / 3);
+				li {
+					border-top: 1px solid $light-gray;
+					&:hover {
+						background-color: #FAF7F1;
+					}
+				}
+			}
+		}
+	}
+}

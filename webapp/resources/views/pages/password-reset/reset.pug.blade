@@ -1,0 +1,27 @@
+extends ../../layouts/app_layout
+
+block content
+
+    .row.columns
+        h1 Reset Password
+
+        .panel-heading
+        .panel-body
+            if session('status')
+                .alert(role="callout")
+                    h4=session('status')
+
+
+        form.form-horizontal(method="POST" action=route('password.request'), data-abide, novalidate)
+            +csrf_field
+
+            input(type="hidden" name="token" value=token)
+
+            +form_row_input("email", "email", "email", "Enter your email address", "Email", "This is a required field")
+            +form_row_input("password", "password", "password", "Enter your password", "Password", "This is a required field")
+            +form_row_input("password_confirmation", "password_confirmation", "password", "Re-enter your password", "Confirm Password", "This is a required field")
+
+            .row.form-group
+                .columns
+                    .submit
+                        button.button(type="submit") Reset Password

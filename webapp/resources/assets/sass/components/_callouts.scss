@@ -1,0 +1,9 @@
+.callout {
+  position: absolute;
+  width: 100%;
+  max-width: 40rem;
+  top: 3rem;
+  left: 50%;
+  z-index: 999;
+  transform: translateX(-50%)
+}

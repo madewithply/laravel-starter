@@ -1,0 +1,15 @@
+form {
+  label {
+    font-weight: bold;
+  }
+  input {
+    padding: 1.5rem 1rem;
+  }
+}
+
+.form-error {
+  &.server {
+    // Forces server error items to be displayed
+    display: inherit;
+  }
+}

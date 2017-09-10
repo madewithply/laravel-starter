@@ -1,0 +1,13 @@
+mixin flash_error_alert()
+
+    if errors->all()
+        .callout.alert(role="callout" data-closable="")
+            .row.columns
+                h4 Error
+                ul
+                each error in errors->all()
+                   li=error
+
+                button.close-button(aria-label="Dismiss alert" type="button" data-close="")
+                    span(aria-hidden="true")
+                        | &times;

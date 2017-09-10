@@ -1,0 +1,61 @@
+nav.main
+	.row.column
+		.top-bar
+			a.logo(href=route('home'))
+				| Project X
+
+			.top-bar-left
+				ul.menu
+					li
+						a()
+							span.has-tip(data-tooltip='', aria-haspopup='true', data-disable-hover='false', tabindex='1', title='Under Construction') Example
+					li
+						a()
+							span.has-tip(data-tooltip='', aria-haspopup='true', data-disable-hover='false', tabindex='1', title='Under Construction') More Examples
+
+			.top-bar-right
+				
+				if Auth::check()
+					.grid-x.align-middle
+						.cell.shrink
+							//- Messages
+							.menu-messages
+								a(href="#")
+									.grid-x.align-middle
+										.cell.auto
+											span Messages
+										.cell.shrink
+											.message-icon
+												img(src="./../images/icons/messages.svg", alt="")
+												span.chip 23
+
+						//- User
+						.cell.shrink
+							ul.menu.dropdown(data-dropdown-menu)
+								li
+									a.menu-user(href=route('profile')
+										//- User Image
+										.grid-x.align-middle
+											.cell.auto
+												.user-name #{user.first_name} #{user.last_name}
+											.cell.shrink
+												.user-image
+													img(src="https://randomuser.me/api/portraits/lego/1.jpg", alt="User Menu")
+													span.chip 7
+
+									//- Dropdown Menu
+									ul.menu.vertical
+										li
+											a() Profile
+										li
+											a() Account
+										//- Logout
+										li
+											a(href=route('logout')) Logout
+
+				else
+					ul.menu
+						li
+							a(href=route('register')) Register
+						li
+							a(href=route('login')) Login
